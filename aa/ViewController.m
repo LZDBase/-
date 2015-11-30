@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+//#import "WXApi.h"
+#import "GBWXPay/GBWXPayManager/GBWXPayManager.h"
+#import "GBWXPayManagerConfig.h"
 
 @interface ViewController ()
 
@@ -16,12 +19,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    UIButton *wxPay = [UIButton buttonWithType:UIButtonTypeCustom];
+    [wxPay setFrame:CGRectMake(100, 100, 100, 50)];
+    [wxPay setTitle:@"wxPay" forState:UIControlStateNormal];
+    [wxPay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [wxPay addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:wxPay];
+}
+
+- (void)pay:(UIButton *)btn{
+ 
+    //设置订单号、商品描述、金额
+    [GBWXPayManager wxpayWithOrderID:@"2015-11-20abssd" orderTitle:@"test" amount:@"1"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [UIAlertController alertControllerWithTitle:@"abc" message:@"aaa" preferredStyle:UIAlertControllerStyleAlert];
 }
 
 @end
